@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="menu">
+	<select id="menuList1" resultType="hashmap">
+		select * from menu
+	</select>
+	<select id="menuList2" resultType="hashmap">
+		select * from menu where auth = 0
+	</select>
+	<select id="menuList3" resultType="hashmap">
+		select * from menu where auth in (0, 3)
+	</select>
+	<select id="menuList4" resultType="hashmap">
+		select * from menu where auth in (0, 3, 2)
+	</select>
+	
+	
+	<select id="login" parameterType="hashmap" resultType="hashmap">
+		select * 
+		from user as u 
+		inner join mapping as m
+		on (u.no = m.user_no)
+		where u.id = #{id} and u.pw = #{pw}
+	</select>
+	
+	
+	<select id="menuSelect" parameterType="hashmap" resultType="hashmap">
+		select * from board where menu_no = #{index}
+	</select>
+</mapper>
