@@ -8,5 +8,9 @@
 </head>
 <body>
 	<h1>성공하셨습니다.</h1>
+<%
+	String img = request.getAttribute("img").toString();
+%>
+	<img src="<%=img%>">
 </body>
 </html>
