@@ -4,17 +4,25 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.java.spring.service.FileServiceInterface;
+
 @Controller
 public class FileController {
+	
+	@Autowired
+	FileServiceInterface fsi;
 	
 	@RequestMapping("/file")
 	public ModelAndView file(ModelAndView mav){
@@ -45,6 +53,19 @@ public class FileController {
 			OutputStream out = new FileOutputStream(f);
 			out.write(bytes);
 			out.close();
+			
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("path", path2);
+			map.put("name", name);
+			map = fsi.fileAdd(map);
+			
+			if(Integer.parseInt(map.get("status").toString()) == 1){
+				map = fsi.fileList();
+				mav.addObject("data", map);
+			}else{
+				mav.addObject("data", new HashMap<String, Object>());
+			}
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -56,7 +77,6 @@ public class FileController {
 			}
 		} 
 		
-		mav.addObject("img", path2 + name);
 		mav.setViewName("ok");
 		return mav;
 	}
