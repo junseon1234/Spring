@@ -1,8 +1,6 @@
-<%@page import="java.util.List"%>
-<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,15 +8,6 @@
 </head>
 <body>
 	<h1>성공하셨습니다.</h1>
-<%
-	HashMap<String, Object> map = (HashMap<String, Object>) request.getAttribute("data");
-	if(map != null){
-		List<HashMap<String, Object>> list = (List<HashMap<String, Object>>) map.get("list");
-		for(int i = 0; i < list.size(); i++){
-%>
-	<a href="<%=list.get(i).get("path") %><%=list.get(i).get("file") %>"><%=list.get(i).get("file") %></a>
-	<hr>
-<%		}
-	}%>
+	<a href="fileList">리스트 보기</a>
 </body>
 </html>

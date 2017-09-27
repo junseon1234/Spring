@@ -41,8 +41,8 @@ public class FileController {
 			
 			String path = "";
 			// 개발 툴에서만 사용 할것!
-			path = "D:/GIT/Spring/src/main/webapp/" + path2;
-//			path = req.getSession().getServletContext().getRealPath("/");
+//			path = "D:/GIT/Spring/src/main/webapp/" + path2;
+			path = req.getSession().getServletContext().getRealPath("/") + path2;
 			System.out.println(path);
 			
 			File f = new File(path);
@@ -58,26 +58,27 @@ public class FileController {
 			map.put("path", path2);
 			map.put("name", name);
 			map = fsi.fileAdd(map);
-			
-			if(Integer.parseInt(map.get("status").toString()) == 1){
-				map = fsi.fileList();
-				mav.addObject("data", map);
-			}else{
-				mav.addObject("data", new HashMap<String, Object>());
-			}
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			// 개발 툴에서만 사용 할것!
-			try {
-				Thread.sleep(4000);
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
+//			try {
+//				Thread.sleep(4000);
+//			} catch (Exception e2) {
+//				e2.printStackTrace();
+//			}
 		} 
 		
 		mav.setViewName("ok");
+		return mav;
+	}
+	
+	@RequestMapping("/fileList")
+	public ModelAndView fileList(ModelAndView mav){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map = fsi.fileList();
+		mav.addObject("data", map);
+		mav.setViewName("fileList");
 		return mav;
 	}
 	
