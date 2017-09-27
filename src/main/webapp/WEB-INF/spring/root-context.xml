@@ -22,5 +22,9 @@
 
 		<!-- SqlSession 생성 -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" c:sqlSessionFactory-ref="sqlSessionFactory"/>
-
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000"/>
+		<property name="maxInMemorySize" value="1000000000"/>
+	</bean>
 </beans>
