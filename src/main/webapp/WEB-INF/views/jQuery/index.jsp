@@ -26,27 +26,18 @@
 	 * () : 선택자를 넣어서 선언할 수 있는 영역이다.
 	 * .  : 점을 이용하여 함수를 연결할 수 있다.
 	 */
-	 console.log("시작");
-	 console.log($("html"));    //HTML 태그 정보
-	 console.log($("head"));	//HEAD 태그 정보
-	 console.log($("meta"));	//META 태그 정보
-	 console.log($("title"));	//TITLE 태그 정보
-	 console.log($("script"));	//SCRIPT 태그 정보
-	 console.log("그냥 실행할 경우 ", $("body"));	//BODY 태그 정보
 	 $(document).ready(function(){
 		 console.log("document가 모두 실행된 후", $("body"));
 		 
 		 var i = 1;
 		//기능 추가
 		 $("button").click(function(){
-			 alert("눌렀습니다");
 			 
 			 //body 태그에 내용을 추가하는 방법은...
 			 
 			 var text = $("input").val();
-			 console.log(text);
-//var tag = "<h1 onclick='hEvent(this);'>" + i + ", 안녕!</h1>"; //JavaScript 식으로
-			 var tag = "<h1> <input type='checkbox'>" + i + " <span>"+ text +"</span> <button type='button'> 삭제 </button> </h1>"; //jQuery용으로 변경
+			 //var tag = "<h1 onclick='hEvent(this);'>" + i + ", 안녕!</h1>"; //JavaScript 식으로
+			 var tag ="<tr class='tablebody'><td><input type='checkbox'></td><td>" + i + "</td><td> <span>"+ text +"</span></td><td> <button type='button'> 삭제 </button> </td></tr>"; //jQuery용으로 변경
 			 
 			 // 글자만 넣는 방법 : text();
 //			 $("div").text(text);
@@ -56,7 +47,7 @@
 
 			 // 내용을 중첩으로 넣을 경우 : append(), prepend()
 			 // append() 뒤에 내용을 넣는 방법. (text1)
-			 $("div").append(tag); 
+			 $("table").append(tag); 
 
 			 // prepend() 앞에 내용을 넣는 방법.
 //			 $("div").prepend(tag);
@@ -67,12 +58,12 @@
 //				 $(this).text($(this).text() + " 선택되었습니다");
 //			 });
 
-			$("h1 button").off();
-			$("h1 button").on("click", function(){
+			$(".tablebody td button").off();
+			$(".tablebody td button").on("click", function(){
 //				$(this).remove();  // 자신을 지우는 행위를 하기에 사용 불가
-				var index = $("h1 button").index(this);  // 선택자가 몇번째 인덱스인지를 구한다.
+				var index = $(".tablebody td button").index(this);  // 선택자가 몇번째 인덱스인지를 구한다.
 				console.log(index);
-				$("h1").eq(index).remove();  //구한 인덱스를 이용하여 h1태그를 삭제한다.
+				$(".tablebody").eq(index).remove();  //구한 인덱스를 이용하여 h1태그를 삭제한다.
 				/* 인덱스를 구하기 위한 JQuery 함수는 index() 이다.
 				 * 선택자가 배열로 되어있기 때문에 구한 인덱스를 eq()를 이용하여 원하는 내용을 선택할 수 있다. 
 				 * remove() 는 선택된 내용을 전체 지우는 행위를 한다.
@@ -81,25 +72,25 @@
 			 
 			
 			
-			$("h1 input:checkbox").off();
-			$("h1 input:checkbox").on("click",function(){
+			$(".tablebody input:checkbox").off();
+			$(".tablebody input:checkbox").on("click",function(){
 				// h1의 인덱스 값 가져오가
-				var index = $("h1 input:checkbox").index(this);
+				var index = $(".tablebody input:checkbox").index(this);
 				//선택된 h1 객체를 변수에 담기(아래에서 공통으로 사용하기 위해 사용)
-				var h1 = $("h1").eq(index);
+				var tbody = $(".tablebody").eq(index);
 				
 				// 해당 체크박스 상태를 확인하기 위해 if문 사용
 				if($(this).prop('checked')){
 					// span 태그의 내용을 변수에 담기
-					var text = h1.find("span").text();
+					var text = tbody.find("span").text();
 					// 입력 받을 수 있도록 태그에 추가
-					h1.find("span").text("");
-					h1.find("span").append("<input type='text' value='" + text + "'>")
+					tbody.find("span").text("");
+					tbody.find("span").append("<input type='text' value='" + text + "'>")
 				}else{
 					// 입력받은 내용을 다시 span태그에 덮어쓰기
-					h1.find("span").text(h1.find("input:text").val());
+					tbody.find("span").text(tbody.find("input:text").val());
 					// 입력받는 태그 화면에서 제거
-					h1.find("input:text").remove();
+					tbody.find("input:text").remove();
 				}
 			});
 			/************************************************************************
@@ -135,7 +126,15 @@
 	  <!-- 태그에 직접 이벤트를 처리할 경우 onclick과 같은 속성으로 script를 정의할 수 있다 -->
 	  
 한줄평 : <input type="text" placeholder="입력하세요" class="ratetext"> <button type="button"> 내용 추가 </button>	  
+<table border="1">
+<tr>
+	<th>선택</th>
+	<th>번호</th>
+	<th>한줄평</th>
+	<th>삭제</th>
+</tr>
 
+</table>
 <div></div>
 
 </body>
