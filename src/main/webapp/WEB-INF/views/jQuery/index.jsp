@@ -80,19 +80,42 @@
 			 
 			
 			
-			$("h1 input").off();
-			$("h1 input").on("click",function(){
-				var index = $("h1 input").index(this);
-				console.log(index, $("h1 span").eq(index).text());
-				$("h1").eq(index).append("<input type='text' value='" + $("h1 span").eq(index).text() + "'>");
+			$("h1 input:checkbox").off();
+			$("h1 input:checkbox").on("click",function(){
+				// h1의 인덱스 값 가져오가
+				var index = $("h1 input:checkbox").index(this);
+				//선택된 h1 객체를 변수에 담기(아래에서 공통으로 사용하기 위해 사용)
+				var h1 = $("h1").eq(index);
+				
+				// 해당 체크박스 상태를 확인하기 위해 if문 사용
+				if($(this).prop('checked')){
+					// span 태그의 내용을 변수에 담기
+					var text = h1.find("span").text();
+					// 입력 받을 수 있도록 태그에 추가
+					h1.append("<input type='text' value='" + text + "'>")
+				}else{
+					// 입력받은 내용을 다시 span태그에 덮어쓰기
+					h1.find("span").text(h1.find("input:text").val());
+					// 입력받는 태그 화면에서 제거
+					h1.find("input:text").remove();
+				}
 			});
-			
-			
+			/************************************************************************
+			 * 1. 선택자 중에 input의 type은 여러가지가 올 수 있기 때문에 input:type를 선택할 수 있다
+			 * 예) <input type="text">   -> $("input:text")
+			 * 
+			 * 2. 체크박스는 결과값이 true & false를 리턴하기 때문에 jQuery에서 .prop()을 사용한다
+			 * 예) $("input:checkbox").prop('checked') <-- 결과값 가져오는 방법
+			 *
+			 * 3. 하위 태그를 찾기 위한 방법으로 find()를 이용하여 정보를 가져올 수 있다.
+			 * 예) $("h1").find("span")  <-- h1 태그 안에 span 태그 정보 가져오는 방법
+			 ************************************************************************/
 			
 			i++;
 		 }); 
 	 });
-	 console.log("종료");
+	 
+	 
 	 
 	 function hEvent(attr){
 		 alert("h1 태그 선택");
