@@ -44,10 +44,11 @@
 			 //body 태그에 내용을 추가하는 방법은...
 			 
 			 var text = "안녕!";
-			 var tag = "<h1 onclick='hEvent();'>" + i + ", 안녕!</h1>";
+//var tag = "<h1 onclick='hEvent(this);'>" + i + ", 안녕!</h1>"; //JavaScript 식으로
+			 var tag = "<h1>" + i + ", 안녕!</h1>"; //jQuery용으로 변경
 			 
 			 // 글자만 넣는 방법 : text();
- //			 $("div").text(text);
+//			 $("div").text(text);
 			 
 			 // 태그와 같이 넣는 방법 : html();
 //			 $("div").html(tag);
@@ -58,13 +59,26 @@
 
 			 // prepend() 앞에 내용을 넣는 방법.
 			 $("div").prepend(tag);
+			 
+			 $("h1").off();  // 이전 이벤트를 종료하게 만든다.
+			 $("h1").on("click", function(){ // 이벤트를 생성해준다
+				 alert("jQuery로 선택되었습니다");
+				 $(this).text($(this).text() + " 선택되었습니다");
+			 });
+			 
 			 i++;
 		 }); 
 	 });
 	 console.log("종료");
 	 
-	 function hEvent(){
+	 function hEvent(attr){
 		 alert("h1 태그 선택");
+		 // this의 정보 중에 속에 있는(innerHTML) 내용을 가져 올 수 있다.
+		 console.log(attr.innerHTML);
+		 // innerHTML을 이용하여 내용을 변경도 가능하다.
+		 attr.innerHTML = attr.innerHTML + " 선택 되었습니다."
+	//		 document.getElementsByTagName("h1")[0].innerHTML
+	//		 this) -> atter.innerHTML   //위와 동일한 방법으로 처리 가능
 	 }
 	 
 </script>
