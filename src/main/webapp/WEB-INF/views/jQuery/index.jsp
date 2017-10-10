@@ -45,7 +45,7 @@
 			 
 			 var text = "안녕!";
 //var tag = "<h1 onclick='hEvent(this);'>" + i + ", 안녕!</h1>"; //JavaScript 식으로
-			 var tag = "<h1>" + i + ", 안녕!</h1>"; //jQuery용으로 변경
+			 var tag = "<h1> <input type='checkbox'>" + i + ", <span>안녕!</span> <button type='button'> 삭제 </button> </h1>"; //jQuery용으로 변경
 			 
 			 // 글자만 넣는 방법 : text();
 //			 $("div").text(text);
@@ -60,13 +60,36 @@
 			 // prepend() 앞에 내용을 넣는 방법.
 			 $("div").prepend(tag);
 			 
-			 $("h1").off();  // 이전 이벤트를 종료하게 만든다.
-			 $("h1").on("click", function(){ // 이벤트를 생성해준다
-				 alert("jQuery로 선택되었습니다");
-				 $(this).text($(this).text() + " 선택되었습니다");
-			 });
+//				 $("h1").off();  // 이전 이벤트를 종료하게 만든다.
+//				 $("h1").on("click", function(){ // 이벤트를 생성해준다
+//				 alert("jQuery로 선택되었습니다");
+//				 $(this).text($(this).text() + " 선택되었습니다");
+//			 });
+
+			$("h1 button").off();
+			$("h1 button").on("click", function(){
+//				$(this).remove();  // 자신을 지우는 행위를 하기에 사용 불가
+				var index = $("h1 button").index(this);  // 선택자가 몇번째 인덱스인지를 구한다.
+				console.log(index);
+				$("h1").eq(index).remove();  //구한 인덱스를 이용하여 h1태그를 삭제한다.
+				/* 인덱스를 구하기 위한 JQuery 함수는 index() 이다.
+				 * 선택자가 배열로 되어있기 때문에 구한 인덱스를 eq()를 이용하여 원하는 내용을 선택할 수 있다. 
+				 * remove() 는 선택된 내용을 전체 지우는 행위를 한다.
+				 */
+			});
 			 
-			 i++;
+			
+			
+			$("h1 input").off();
+			$("h1 input").on("click",function(){
+				var index = $("h1 input").index(this);
+				console.log(index, $("h1 span").eq(index).text());
+				$("h1").eq(index).append("<input type='text' value='" + $("h1 span").eq(index).text() + "'>");
+			});
+			
+			
+			
+			i++;
 		 }); 
 	 });
 	 console.log("종료");
