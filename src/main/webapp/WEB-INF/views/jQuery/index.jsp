@@ -43,9 +43,10 @@
 			 
 			 //body 태그에 내용을 추가하는 방법은...
 			 
-			 var text = "안녕!";
+			 var text = $("input").val();
+			 console.log(text);
 //var tag = "<h1 onclick='hEvent(this);'>" + i + ", 안녕!</h1>"; //JavaScript 식으로
-			 var tag = "<h1> <input type='checkbox'>" + i + ", <span>안녕!</span> <button type='button'> 삭제 </button> </h1>"; //jQuery용으로 변경
+			 var tag = "<h1> <input type='checkbox'>" + i + " <span>"+ text +"</span> <button type='button'> 삭제 </button> </h1>"; //jQuery용으로 변경
 			 
 			 // 글자만 넣는 방법 : text();
 //			 $("div").text(text);
@@ -55,10 +56,10 @@
 
 			 // 내용을 중첩으로 넣을 경우 : append(), prepend()
 			 // append() 뒤에 내용을 넣는 방법. (text1)
-//			 $("div").append(tag); 
+			 $("div").append(tag); 
 
 			 // prepend() 앞에 내용을 넣는 방법.
-			 $("div").prepend(tag);
+//			 $("div").prepend(tag);
 			 
 //				 $("h1").off();  // 이전 이벤트를 종료하게 만든다.
 //				 $("h1").on("click", function(){ // 이벤트를 생성해준다
@@ -92,7 +93,8 @@
 					// span 태그의 내용을 변수에 담기
 					var text = h1.find("span").text();
 					// 입력 받을 수 있도록 태그에 추가
-					h1.append("<input type='text' value='" + text + "'>")
+					h1.find("span").text("");
+					h1.find("span").append("<input type='text' value='" + text + "'>")
 				}else{
 					// 입력받은 내용을 다시 span태그에 덮어쓰기
 					h1.find("span").text(h1.find("input:text").val());
@@ -124,7 +126,7 @@
 		 // innerHTML을 이용하여 내용을 변경도 가능하다.
 		 attr.innerHTML = attr.innerHTML + " 선택 되었습니다."
 	//		 document.getElementsByTagName("h1")[0].innerHTML
-	//		 this) -> atter.innerHTML   //위와 동일한 방법으로 처리 가능
+	//		 this) -> attr.innerHTML   //위와 동일한 방법으로 처리 가능
 	 }
 	 
 </script>
@@ -132,7 +134,8 @@
 <body style="height: 100px; background-color: green;">
 	  <!-- 태그에 직접 이벤트를 처리할 경우 onclick과 같은 속성으로 script를 정의할 수 있다 -->
 	  
-<button type="button"> 추가 </button>	  
+한줄평 : <input type="text" placeholder="입력하세요" class="ratetext"> <button type="button"> 내용 추가 </button>	  
+
 <div></div>
 
 </body>
