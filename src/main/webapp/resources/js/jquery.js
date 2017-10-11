@@ -72,7 +72,7 @@
 					$("tbody button").off();
 					$("tbody button").on("click", function(){
 				//	$(this).remove();  // 자신을 지우는 행위를 하기에 사용 불가
-						var index = $("tbody tr button").index(this);  // 선택자가 몇번째 인덱스인지를 구한다.
+						var index = $("tbody tr").index(this);  // 선택자가 몇번째 인덱스인지를 구한다.
 						storage.splice(index, 1);
 						set(storage);
 						// $("tbody tr").eq(index).remove();  //구한 인덱스를 이용하여 h1태그를 삭제한다.
@@ -91,6 +91,8 @@
 						var index = $("tbody input:checkbox").index(this);
 						//선택된 h1 객체를 변수에 담기(아래에서 공통으로 사용하기 위해 사용)
 						var tbody = $("tbody tr").eq(index);
+						
+						console.log(index);
 						
 						// 해당 체크박스 상태를 확인하기 위해 if문 사용
 						if($(this).prop('checked')){

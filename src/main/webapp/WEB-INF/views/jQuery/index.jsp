@@ -13,7 +13,8 @@
 <body style="height: 100px; background-color: cyan;">
 	  <!-- 태그에 직접 이벤트를 처리할 경우 onclick과 같은 속성으로 script를 정의할 수 있다 -->
 	  
-한줄평 : <input type="text" placeholder="입력하세요" class="ratetext"> <button type="button" id="submit"> 내용 추가 </button>	  
+한줄평 : <input type="text" placeholder="입력하세요" class="ratetext"> 
+<button type="button" id="submit"> 내용 추가 </button>
 <table border="1">
 <thead>
 	<tr>

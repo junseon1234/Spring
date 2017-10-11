@@ -12,5 +12,10 @@ public class JqueryController {
 	public String jquery(){
 		return "jQuery/index"; // view를 정의하는 부분
 	}
+	
+	@RequestMapping("/jquery2") //특정 메소드에 주입하면 URL 정보를 매칭.
+	public String jquery2(){
+		return "jQuery/index2"; // view를 정의하는 부분
+	}
 
 }
