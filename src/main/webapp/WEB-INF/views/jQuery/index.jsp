@@ -37,7 +37,12 @@
 			 
 			 var text = $("input").val();
 			 //var tag = "<h1 onclick='hEvent(this);'>" + i + ", 안녕!</h1>"; //JavaScript 식으로
-			 var tag ="<tr class='tablebody'><td><input type='checkbox'></td><td>" + i + "</td><td> <span>"+ text +"</span></td><td> <button type='button'> 삭제 </button> </td></tr>"; //jQuery용으로 변경
+			 var tag ="<tr class='tablerow'>"
+			 tag += "<td><input type='checkbox'></td>"
+			 tag += "<td>" + i + "</td>"
+			 tag += "<td> <span>"+ text +"</span></td>"
+			 tag += "<td> <button type='button'> 삭제 </button> </td>"
+			 tag += "</tr>"; //jQuery용으로 변경
 			 
 			 // 글자만 넣는 방법 : text();
 //			 $("div").text(text);
@@ -58,12 +63,12 @@
 //				 $(this).text($(this).text() + " 선택되었습니다");
 //			 });
 
-			$(".tablebody td button").off();
-			$(".tablebody td button").on("click", function(){
+			$(".tablerow button").off();
+			$(".tablerow button").on("click", function(){
 //				$(this).remove();  // 자신을 지우는 행위를 하기에 사용 불가
-				var index = $(".tablebody td button").index(this);  // 선택자가 몇번째 인덱스인지를 구한다.
+				var index = $(".tablerow button").index(this);  // 선택자가 몇번째 인덱스인지를 구한다.
 				console.log(index);
-				$(".tablebody").eq(index).remove();  //구한 인덱스를 이용하여 h1태그를 삭제한다.
+				$(".tablerow").eq(index).remove();  //구한 인덱스를 이용하여 h1태그를 삭제한다.
 				/* 인덱스를 구하기 위한 JQuery 함수는 index() 이다.
 				 * 선택자가 배열로 되어있기 때문에 구한 인덱스를 eq()를 이용하여 원하는 내용을 선택할 수 있다. 
 				 * remove() 는 선택된 내용을 전체 지우는 행위를 한다.
@@ -72,12 +77,12 @@
 			 
 			
 			
-			$(".tablebody input:checkbox").off();
-			$(".tablebody input:checkbox").on("click",function(){
+			$(".tablerow input:checkbox").off();
+			$(".tablerow input:checkbox").on("click",function(){
 				// h1의 인덱스 값 가져오가
-				var index = $(".tablebody input:checkbox").index(this);
+				var index = $(".tablerow input:checkbox").index(this);
 				//선택된 h1 객체를 변수에 담기(아래에서 공통으로 사용하기 위해 사용)
-				var tbody = $(".tablebody").eq(index);
+				var tbody = $(".tablerow").eq(index);
 				
 				// 해당 체크박스 상태를 확인하기 위해 if문 사용
 				if($(this).prop('checked')){
@@ -122,7 +127,7 @@
 	 
 </script>
 </head>
-<body style="height: 100px; background-color: green;">
+<body style="height: 100px; background-color: cyan;">
 	  <!-- 태그에 직접 이벤트를 처리할 경우 onclick과 같은 속성으로 script를 정의할 수 있다 -->
 	  
 한줄평 : <input type="text" placeholder="입력하세요" class="ratetext"> <button type="button"> 내용 추가 </button>	  
