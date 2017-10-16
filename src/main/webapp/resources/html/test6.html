@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test6</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	var flag = true;
+	$("#checks").click(function(){
+		if(flag){
+			$("#input").html("<input type='text' id='put1'> <input type='text' id='put2'>");
+		}else{
+			var text = "<tr><td>" + $("#put1").val() + "</td><td>" + $("#put2").val() + "</td></tr>";
+			$("#view").append(text);
+			$("#put").val("");
+			$("#input").html("");
+		}
+		flag = !flag;
+	});
+	
+});
+</script>
+</head>
+<body>
+	<div id="input"></div>
+	<input type="button" id="checks" value="입력창 열기">
+	<table border="1" id="view" width="450px" height="30px">
+	
+	</table>
+</body>
+</html>

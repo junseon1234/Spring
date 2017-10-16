@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10월13문제</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+	var i = 1;
+		$("#submit").click(function(){
+			var text = "<tr>"
+			    + "<td> <input type='checkbox'> </td>"
+			    + "<td>" + i + "</td>"
+			    + "<td>" + $("#text").val() + "</td>"
+			    + "</tr>";
+			$("tbody").append(text);
+			$("#text").val("");
+			i++;
+			chkbox();
+		});
+		
+		$("#update").click(function(){
+			 for(var j = 0; j < i; j++){
+				 if($("input:checkbox").eq(j).prop("checked")){
+					var text = $("#text").val();
+					$($("tbody tr").eq(j)).find("td").eq(2).text(text);
+					$("input:text").val("");
+					chkbox();
+					break;
+				 }
+			 }
+		 });
+	
+		$("#delete").click(function(){
+		 	for(var j = 0; j < i; j++){
+			 	if($("input:checkbox").eq(j).prop("checked")){
+					$("tbody tr").eq(j).remove();
+					chkbox();
+					break;
+				 }
+			 }
+	 	});
+		
+		$("#show").click(function(){
+			$(".row").show();
+			return false;
+		});
+		
+		$("#hide").click(function(){
+			$(".row").hide();
+			return false;
+		});
+				
+	});
+	
+	function chkbox(){
+		$("input:checkbox").click(function(){ // 리스트에 있는 체크박스의 이벤트 처리
+			if($(this).prop("checked")){ // 현재 선택한 체크박스의 값이 true인지 확인
+				$("input:checkbox").prop("checked",false); // 전체 체크박스의 값을 false로 변경
+				$(this).prop("checked",true); // 현재 선택한 체크박스의 값만 true로 변경
+			}else{
+				$("input:checkbox").prop("checked",false); // 전체 체크박스의 값을 false로 변경
+			}
+		});
+	}
+	
+	
+		
+</script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#">JQuery Example</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="" id="show">입력창 보이기</a></li>
+        <li><a href="" id="hide">입력창 숨기기</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+	<h3>10월 13일 JQuery 연습문제</h3>
+	<p>
+		위의 버튼 3개만 이용하여 추가, 수정, 삭제 이벤트를 구현 하시오.<br>
+		1) 추가 : "입력하세요" 입력창을 이용하여 데이터 생성 할 것.<br>
+		2) 수정 : 선택(체크박스)를 선택된 내용만 "입력하세요" 입력창으로 데이터를 가져온 후 수정 할 것.<br>
+		3) 삭제 : 선택(체크박스)를 선택된 내용만 데이터를 삭제 할 것<br>
+		참조 : 체크박스 이벤트는 위에 있는 script의 이벤트를 같이 이용하여 처리 할것.
+	</p>
+</div>
+
+<hr>
+
+<div class="container">
+	<form>
+	  <div class="form-group row">
+	    <div class="col-xs-2">
+	    	<label for="text">한줄평  :</label>
+	    </div>
+	    <div class="col-xs-7">
+	    	<input type="text" class="form-control" id="text" name="text" placeholder="입력하세요.">
+	    </div>
+	    <div class="col-xs-1">
+	    	<button type="button" class="btn btn-primary" id="submit">추가</button>
+	    </div>
+	    <div class="col-xs-1">
+	    	<button type="button" class="btn btn-success" id="update">수정</button>
+	    </div>
+	    <div class="col-xs-1">
+	    	<button type="button" class="btn btn-danger" id="delete">삭제</button>
+	    </div>
+	  </div>
+	</form>
+</div>
+<div class="container">
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th>선택</th>
+	      <th>번호</th>
+	      <th>한줄평</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	
+	  </tbody>
+	</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test7</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#checks").click(function(){
+		if($("#checks").prop("checked")){
+			$("#div").html("<input type='text' id='put'>");
+		}else{
+			var text = "<tr><td>" + $("#put").val() + "</td></tr>";
+			$("#view").prepend(text);
+			$("#put").val("");
+			$("#div").empty();
+		}
+				
+			});
+});
+</script>
+</head>
+<body>
+	<div id="div"></div>
+	<input type="checkbox" id="checks"> 펼치기
+	<table border="1" id="view" width="450px" height="30px">
+	
+	</table>
+</body>
+</html>

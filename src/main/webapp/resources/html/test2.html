@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test2</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#checks").click(function(){
+				var text = "<tr><td>" + $("#put").val() + "</td></tr>";
+				$("#view").prepend(text);
+				$("#put").val("");
+			});
+});
+</script>
+</head>
+<body>
+	<input type="text" id="put">
+	<input type="button" id="checks" value="넣기">
+	<table border="1" id="view" width="450px" height="30px">
+	
+	</table>
+</body>
+</html>

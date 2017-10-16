@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+			var flag = true;
+			$("#check1").click(function(){
+				if(flag){
+					$("#view1").text("추가내용");
+				}else{
+					$("#view1").text("");
+				}
+				flag = !flag;
+			});
+		</script>
+<script type="text/javascript">
+			$("#check2").click(function(){
+				if($("#check2").prop("checked")){
+					$("#view2").text("추가내용");
+				}else{
+					$("#view2").text("");
+				}
+			});
+		</script>
+		
+<script type="text/javascript">
+			$("#check3").click(function(){
+				if($("#check3").prop("checked")){
+					$("#view3").html("<p>태그내용 추가</p>");
+				}else{
+					$("#view3").empty();
+				}
+			});
+		</script>
+		
+<script type="text/javascript">
+			$("#check4").click(function(){
+				if($("#check4").prop("checked")){
+					$("#view4").html("<p>태그내용 추가</p>");
+				}else{
+					$("#view4").remove();
+				}
+			});
+		</script>
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+		<h3>클릭 이벤트</h3>
+		<input type="button" id="check1" value="버튼">
+		
+		<p id="view1"></p>
+	</div>
+	
+	<div class="container">
+		<h3>체크박스 이벤트1</h3>
+		<input type="checkbox" id="check2"> 체크박스 <br>
+		
+		<p id="view2"></p>
+	</div>
+	
+	<div class="container">
+		<h3>체크박스 이벤트2</h3>
+		<input type="checkbox" id="check3"> 체크박스 <br>
+		
+		<div id="view3"></div>
+	</div>
+	
+	<div class="container">
+		<h3>체크박스 이벤트3</h3>
+		<input type="checkbox" id="check4"> 체크박스 <br>
+		
+		<div id="view4"></div>
+	</div>
+</body>
+</html>
